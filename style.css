@@ -32,6 +32,8 @@ body {
 .screen:nth-of-type(1) h1 {
   text-transform: capitalize;
   color: white;
+  text-align: center;
+  line-height: 1.6;
 }
 .screen:nth-of-type(1) button {
   color: var(--clr);
@@ -40,11 +42,20 @@ body {
   padding: 10px 15px;
   border-radius: 3px;
   border: none;
-  box-shadow: 0 0 3px rgb(0, 0, 0, 0.5);
+  box-shadow: 0 0 3px rgba(78, 72, 72, 0.5);
   cursor: pointer;
+  transition: 0.5s;
+}
+.screen:nth-of-type(1) button:hover {
+  background-color: rgba(255, 255, 255, 0.767);
+}
+.screen:nth-of-type(2) {
+  padding: 0 10px;
 }
 .screen:nth-of-type(2) p {
   color: white;
+  text-align: center;
+  line-height: 1.6;
 }
 .screen:nth-of-type(2) .insects {
   margin-top: 20px;
@@ -65,11 +76,19 @@ body {
   font-size: 10px;
   border-radius: 3px;
   cursor: pointer;
+  transition: 0.5s;
+}
+.screen:nth-of-type(2) .insects .box-insect:hover {
+  background-color: white;
 }
 .screen:nth-of-type(2) .insects .box-insect span {
   display: block;
   margin-bottom: 10px;
   text-transform: capitalize;
+  transition: 0.5s;
+}
+.screen:nth-of-type(2) .insects .box-insect:hover span {
+  color: var(--clr);
 }
 .screen:nth-of-type(2) .insects img {
   width: 60px;
@@ -96,6 +115,7 @@ body {
   height: 60px;
   position: absolute;
   cursor: pointer;
+  transition: 0.5s;
 }
 .fixed {
   position: fixed;
@@ -110,6 +130,13 @@ body {
   padding: 20px 0;
   transition: 0.5s;
 }
-.move {
+.popup {
   transform: translateX(-50%) translateY(100%) !important;
+}
+/* Media */
+@media (max-width: 600px) {
+  .fixed p {
+    line-height: 2;
+    font-size: 11px;
+  }
 }

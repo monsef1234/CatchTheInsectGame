@@ -15,9 +15,9 @@ btn.addEventListener("click", (eo) => {
   });
 });
 const randomNum = () => {
-  return Math.trunc(Math.random() * 100);
+  return Math.round(Math.random() * 90);
 };
-let clickCounter = 1;
+let clickCounter = 0;
 const scoreCounter = document.getElementById("score-counter");
 scoreCounter.innerHTML = clickCounter;
 const min = document.getElementById("min");
@@ -36,45 +36,45 @@ const timeCounter = () => {
       min.innerHTML = `0${minCounter}`;
     }
     secCounter++;
-    if (secCounter === 59) {
+    if (secCounter > 59) {
       minCounter++;
       secCounter = 0;
     }
     timeCounter();
-  }, 1000);
+  }, 800);
 };
-
+const createInects = (img) => {
+  const imgNew = document.createElement("img");
+  imgNew.src = img;
+  imgNew.className = "insect";
+  screenInsect.append(imgNew);
+  imgNew.style.left = `${randomNum()}%`;
+  imgNew.style.top = `${randomNum()}%`;
+};
 boxInsects.forEach((box) => {
   box.addEventListener("click", (eo) => {
     screens.forEach((screen) => {
       screen.style.transform = `translateY(-200vh)`;
     });
     const img = box.getElementsByTagName("img")[0].src;
-    const imgNew = document.createElement("img");
-    imgNew.src = img;
-    imgNew.className = "hi";
-    screenInsect.append(imgNew);
-    imgNew.style.left = `${randomNum()}%`;
-    imgNew.style.top = `${randomNum()}%`;
+    setTimeout(() => {
+      createInects(img);
+    }, 1000);
     timeCounter();
     screenInsect.addEventListener("click", (eo) => {
-      if (eo.target.classList.contains("hi")) {
+      if (eo.target.classList.contains("insect")) {
         clickCounter++;
-        // console.log(i);
-        for (let counter = 0; counter < clickCounter; counter++) {
-          const imgNew = document.createElement("img");
-          imgNew.src = img;
-          imgNew.className = "hi";
-          screenInsect.append(imgNew);
-          imgNew.style.left = `${randomNum()}%`;
-          imgNew.style.top = `${randomNum()}%`;
-        }
-        // if you want to know numbers of an elemnt
+        eo.target.style.transform = `scale(0)`;
+        createInects(img);
+        setTimeout(() => {
+          createInects(img);
+        }, 500);
+        // if you want to know numbers of an element
         // const insectsNumber = screenInsect.getElementsByTagName("img").length;
         scoreCounter.innerHTML = clickCounter;
         if (clickCounter >= 20) {
           const popUp = document.querySelector(".fixed");
-          popUp.classList.add("move");
+          popUp.classList.add("popup");
         }
       }
     });
